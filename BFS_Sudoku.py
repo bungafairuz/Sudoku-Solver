@@ -114,19 +114,19 @@ class Node:
         return Node(next, action)
 
 def BFS(problem):
-    # Create initial node of problem tree holding original board
+    # inisialisai node pertama
     node = Node(problem.initial)
-    spent_nodes=0
+    spent_nodes=1
     # print(node)
 
-    # Check if original board is correct and immediately return if valid
+    # cek dulu uda bener belum
     if problem.check_legal(node.state):
         return node
 
     frontier = Queue()
     frontier.put(node)
 
-    # Loop until all nodes are explored or solution found
+    # Looping sampai ketemu state goal
     while (frontier.qsize() != 0):
 
         node = frontier.get()
@@ -164,7 +164,7 @@ def BFS_solve(board):
         return 1, solution[0].state
 
     if(solution[1] >= 250000):
-        print ("BFS tidak kuat")
+        print ("BFS spend too many nodes")
         print ("Spent nodes: " + str(solution[1]) + " nodes")
         print ("Elapsed time: " + str(elapsed_time) + " seconds")
         return 0, board
